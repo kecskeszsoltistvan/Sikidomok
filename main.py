@@ -1,9 +1,10 @@
+from email import message
 from tkinter import *
 from tkinter import ttk
 
 def nevjegy():
     abl2 = Toplevel(ablak1)
-    uz2 = Message(abl2, text="Készítette: Kecskés Zsolt\n2022.04.10", width=300)
+    uz2 = Message(abl2, text="Készítette:\nKecskés Zsolt és Tátrai Dominik Oszkár\n2022.04.10", width=300)
     kilep = Button(abl2, text="Exit", command=abl2.destroy)
     uz2.pack()
     kilep.pack()
