@@ -24,25 +24,25 @@ Label(
     ablak1,
     text='Változó1:', 
     bg='#eeeeee'
-).grid(row=1, column=0)
+).place(x=20, y=50)
 Label(
     ablak1,
     text='Változó2:', 
     bg='#eeeeee'
-).grid(row=2, column=0)
+).place(x=20, y=100)
 Label(
     ablak1,
     text='Változó3:', 
     bg='#eeeeee'
-).grid(row=3, column=0)
+).place(x=20, y=150)
 a = ttk.Entry(ablak1)
-a.grid(row=1, column=1)
+a.place(x=80, y=50)
 b = ttk.Entry(ablak1)
-b.grid(row=2, column=1)
+b.place(x=80, y=100)
 c = ttk.Entry(ablak1)
-c.grid(row=3, column=1)
-canvas = Canvas(ablak1, height = 200, width = 300, bg = "white", bd = 10).grid(row=4, column=2, sticky = "e") # Canvas
-gomb = Button(ablak1, text = "Számítás", command = ablak1.destroy).grid(row=4, column=1, sticky = "e") # Gomb
+c.place(x=80, y=150)
+canvas = Canvas(ablak1, height = 200, width = 300, bg = "white", bd = 10).place(x=250, y=20) # Canvas
+gomb = Button(ablak1, text = "Számítás", command = ablak1.destroy, height = 2, width = 28).place(x=20, y=200) # Gomb
 m1 = Menubutton(ms, text = "Fájl", underline = 0)
 m1.pack(side = LEFT)
 fm = Menu(m1)
