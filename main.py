@@ -12,9 +12,9 @@ def nevjegy():
 
 ablak1 = Tk()
 ablak1.title("IKT Projekt - Síkidomok - 2022.04.27")
-ablak1.geometry('600x500')
-ablak1.maxsize(600, 500)
-ablak1.minsize(600, 500)
+ablak1.geometry('600x350')
+ablak1.maxsize(600, 350)
+ablak1.minsize(600, 350)
 ablak1.config(background="#eeeeee")
 
 
