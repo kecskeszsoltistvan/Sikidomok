@@ -12,11 +12,12 @@ def nevjegy():
 
 ablak1 = Tk()
 ablak1.title("IKT Projekt - Síkidomok - 2022.04.27")
-ablak1.geometry('600x350')
-ablak1.maxsize(600, 350)
-ablak1.minsize(600, 350)
+ablak1.geometry('600x400')
+ablak1.maxsize(600, 400)
+ablak1.minsize(600, 400)
 ablak1.config(background="#eeeeee")
-
+icon = PhotoImage(file = "ikon.png")
+ablak1.iconphoto(True, icon)
 
 ms = Frame(ablak1)
 ms.grid(row=0, column=0)
@@ -29,18 +30,18 @@ v2 = Label(
     ablak1,
     text='Változó2:', 
     bg='#eeeeee'
-).place(x=20, y=100)
+).place(x=20, y=80)
 v3 = Label(
     ablak1,
     text='Változó3:', 
     bg='#eeeeee'
-).place(x=20, y=150)
+).place(x=20, y=110)
 a = ttk.Entry(ablak1)
 a.place(x=80, y=50)
 b = ttk.Entry(ablak1)
-b.place(x=80, y=100)
+b.place(x=80, y=80)
 c = ttk.Entry(ablak1)
-c.place(x=80, y=150)
+c.place(x=80, y=110)
 e1 = Label(
     ablak1,
     text='Eredmény1:', 
@@ -83,8 +84,17 @@ ee = ttk.Entry(ablak1)
 ee.place(x=290, y=280)
 ef = ttk.Entry(ablak1)
 ef.place(x=290, y=310)
+sym = PhotoImage(file="ikon_nagy.png")
+kep = ttk.Label(
+    ablak1,
+    image=sym
+).place(x=440, y=250)
+ef.place(x=290, y=310)
 canvas = Canvas(ablak1, height = 200, width = 300, bg = "white", bd = 10).place(x=250, y=20) # Canvas
-gomb = Button(ablak1, text = "Számítás", command = ablak1.destroy, height = 2, width = 28).place(x=20, y=200) # Gomb
+szamitas = Button(ablak1, text = "Számítás", command = ablak1.destroy, height = 1, width = 16, font = "Impact 20").place(x=15, y=150) # Gomb
+Manual = Button(ablak1, text = "Olvassel megnyitása", command = ablak1.destroy, height = 2, width = 30).place(x=195, y=350) # Gomb
+Button(ablak1, text = "Kilépés", command = ablak1.destroy, height = 2, width = 20).place(x=20, y=350) # Gomb
+
 m1 = Menubutton(ms, text = "Fájl", underline = 0)
 m1.pack(side = LEFT)
 fm = Menu(m1)
