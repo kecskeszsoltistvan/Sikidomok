@@ -86,8 +86,8 @@ def rombusz():
         kerulet=4*a
         keredmeny.delete(0, END)
         keredmeny.insert(0, str(kerulet)+"cm2")
-        #terület
-        terulet=a*b
+        #terulet
+        terulet=a*m
         teredmeny.delete(0, END)
         teredmeny.insert(0, str(terulet)+"cm3")
         
