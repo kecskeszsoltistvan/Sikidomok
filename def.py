@@ -27,9 +27,11 @@ def negyzet():
         kerulet=2*(a+b)
         keredmeny.delete(0, END)
         keredmeny.insert(0, str(kerulet)+"cm2")
+        #terület
         terulet=a*b
         teredmeny.delete(0, END)
         teredmeny.insert(0, str(terulet)+"cm3")
+       
 
 #teglalap
 def teglalap():
@@ -55,6 +57,7 @@ def teglalap():
         kerulet=2*(a+b)
         keredmeny.delete(0, END)
         keredmeny.insert(0, str(kerulet)+"cm2")
+         #terület
         terulet=a*b
         teredmeny.delete(0, END)
         teredmeny.insert(0, str(terulet)+"cm3")
@@ -83,6 +86,8 @@ def rombusz():
         kerulet=4*a
         keredmeny.delete(0, END)
         keredmeny.insert(0, str(kerulet)+"cm2")
+        #terület
         terulet=a*b
         teredmeny.delete(0, END)
         teredmeny.insert(0, str(terulet)+"cm3")
+        
