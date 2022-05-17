@@ -121,3 +121,34 @@ def paralelogramma():
         teredmeny.delete(0, END)
         teredmeny.insert(0, str(terulet)+"cm3")
 
+#trapéz
+def trapéz():
+    if not s:
+        keredmeny.delete(0, END)
+        keredmeny.insert(0, str("Szám adat kell"))
+        teredmeny.delete(0, END)
+        teredmeny.insert(0, str("Szám adat kell"))
+    a=float(v1.get())
+    b=float(v2.get())
+    c=float(v3.get())
+    d=float(v4.get())
+    m=float(v5.get())
+    
+    if a==ures or m==ures or b==ures or c==ures:
+        keredmeny.delete(0, END)
+        keredmeny.insert(0, str("Szám adat kell"))
+        teredmeny.delete(0, END)
+        teredmeny.insert(0, str("Szám adat kell"))
+    
+    if a<=0 or m<=0 or b<=0 or c<=0:
+            keredmeny.delete(0,END)
+            keredmeny.insert(0, str("pozitív szám kell"))
+    else:
+        #kerület
+        kerulet=a+b+c+d
+        keredmeny.delete(0, END)
+        keredmeny.insert(0, str(kerulet)+"cm2")
+        #terulet
+        terulet=((a+c)/2)*m
+        teredmeny.delete(0, END)
+        teredmeny.insert(0, str(terulet)+"cm3")
