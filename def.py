@@ -211,4 +211,37 @@ def kor():
         #terület
         terulet=math.pi*(r*r)
         teredmeny.delete(0, END)
-        teredmeny.insert(0, str(terulet)+"cm
+        teredmeny.insert(0, str(terulet)+"cm")
+
+#Háromszög
+def haromszog():
+    if not s:
+        keredmeny.delete(0, END)
+        keredmeny.insert(0, str("Szám adat kell"))
+        teredmeny.delete(0, END)
+        teredmeny.insert(0, str("Szám adat kell"))
+    a=float(v1.get())
+    b=float(v2.get())
+    c=float(v3.get())
+    ma=float(v4.get())
+    
+    
+    if a==ures or ma==ures or b==ures or c==ures:
+        keredmeny.delete(0, END)
+        keredmeny.insert(0, str("Szám adat kell"))
+        teredmeny.delete(0, END)
+        teredmeny.insert(0, str("Szám adat kell"))
+    
+    if a<=0 or b<=0 or c<=0 or ma<=0:
+            keredmeny.delete(0,END)
+            keredmeny.insert(0, str("pozitív szám kell"))
+    else:
+        #kerület
+        kerulet=a+b+c
+        keredmeny.delete(0, END)
+        keredmeny.insert(0, str(kerulet)+"cm2")
+        #terület
+        terulet=(ma*a)/2
+        teredmeny.delete(0, END)
+        teredmeny.insert(0, str(terulet)+"cm")
+
