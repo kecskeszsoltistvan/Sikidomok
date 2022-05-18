@@ -1,5 +1,5 @@
 from tkinter import*
-from math import*
+import math
 
 ures=None
 s=''
@@ -183,3 +183,32 @@ def deltoid():
             terulet=(e*f)/2
             teredmeny.delete(0, END)
             teredmeny.insert(0, str(terulet)+"cm3")
+
+#kör
+def kor():
+    if not s:
+        keredmeny.delete(0, END)
+        keredmeny.insert(0, str("Szám adat kell"))
+        teredmeny.delete(0, END)
+        teredmeny.insert(0, str("Szám adat kell"))
+    r=float(v1.get())
+    
+    
+    if r==ures:
+        keredmeny.delete(0, END)
+        keredmeny.insert(0, str("Szám adat kell"))
+        teredmeny.delete(0, END)
+        teredmeny.insert(0, str("Szám adat kell"))
+    
+    if r<=0:
+            keredmeny.delete(0,END)
+            keredmeny.insert(0, str("pozitív szám kell"))
+    else:
+        #kerület
+        kerulet=2*(r*math.pi)
+        keredmeny.delete(0, END)
+        keredmeny.insert(0, str(kerulet)+"cm2")
+        #terület
+        terulet=math.pi*(r*r)
+        teredmeny.delete(0, END)
+        teredmeny.insert(0, str(terulet)+"cm
