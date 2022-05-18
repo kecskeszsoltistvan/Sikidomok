@@ -211,4 +211,4 @@ def kor():
         #terület
         terulet=math.pi*(r*r)
         teredmeny.delete(0, END)
-        teredmeny.insert(0, str(terulet)+"cm
+        teredmeny.insert(0, str(terulet)+"cm")
