@@ -1,13 +1,18 @@
 from email import message
 from tkinter import *
 import math
-
+'''
+Hosszú történet röviden, ennek a kódnak úgy 80%-át újra írtam, mert csak így működött.
+Az egész egy kódműtétként indult, de aztán elkezdtem az én részemet is csinálni, és puff, kész van (majdnem).
+Néhány számítást még át kell írni, mert túl sok adatot kér, de azon kívül minden jó.  
+Ja, meg az olvassel.pdf-t kell befejezni. Azt addig átadom a munkatársamnak.
+A maradék úgy is meglesz.                                - Kecskés Zsolt. 2022.05.22.
+'''
 szamitas = "None"
 ures=None
-s=''
-a = 0
-b = 0
-c = 0
+aa = 0
+bb = 0
+cc = 0
 ma = 0
 r = 0
 #Számolások
@@ -86,6 +91,12 @@ def rombusz():
     if m<=0:
         vb.delete(0,END)
         vb.insert(0, str("Pozitív szám kell"))
+    if m > aa:
+        vb.delete(0, END)
+        vb.insert(0, str("Túl nagy magasság"))
+    elif m == aa:
+        vb.delete(0, END)
+        vb.insert(0, str("Az alakzat egy Négyzet"))
     else:
         #kerület
         kerulet= 4 * aa
@@ -112,7 +123,7 @@ def paralelogramma():
         keredmeny.delete(0, END)
         teredmeny.delete(0, END)
     try:
-        m=float(vb.get())
+        m=float(vc.get())
     except:
         vc.delete(0, END)
         vc.insert(0, str("Szám adat kell"))
@@ -133,64 +144,125 @@ def paralelogramma():
         keredmeny.delete(0, END)
         keredmeny.insert(0, str(kerulet)+" cm")
         #terulet
-        terulet=a * m
+        terulet=aa * m
         teredmeny.delete(0, END)
         teredmeny.insert(0, str(terulet)+" cm²")
 #trapéz
 def trapez():
-    if not s:
+    try:
+        aa=float(va.get())
+    except:
+        va.delete(0, END)
+        va.insert(0, str("Szám adat kell"))
         keredmeny.delete(0, END)
-        keredmeny.insert(0, str("Szám adat kell"))
         teredmeny.delete(0, END)
-        teredmeny.insert(0, str("Szám adat kell"))
-    a=float(v1.get())
-    b=float(v2.get())
-    c=float(v3.get())
-    d=float(v4.get())
-    m=float(v5.get())
-    
-    if a==ures or m==ures or b==ures or c==ures:
+    try:
+        bb=float(vb.get())
+    except:
+        vb.delete(0, END)
+        vb.insert(0, str("Szám adat kell"))
         keredmeny.delete(0, END)
-        keredmeny.insert(0, str("Szám adat kell"))
         teredmeny.delete(0, END)
-        teredmeny.insert(0, str("Szám adat kell"))
+    try:
+        cc=float(vc.get())
+    except:
+        vc.delete(0, END)
+        vc.insert(0, str("Szám adat kell"))
+        keredmeny.delete(0, END)
+        teredmeny.delete(0, END)
+    try:
+        dd=float(vd.get())
+    except:
+        vd.delete(0, END)
+        vd.insert(0, str("Szám adat kell"))
+        keredmeny.delete(0, END)
+        teredmeny.delete(0, END)
+    try:
+        m=float(ve.get())
+    except:
+        ve.delete(0, END)
+        ve.insert(0, str("Szám adat kell"))
+        keredmeny.delete(0, END)
+        teredmeny.delete(0, END)
     
-    if a<=0 or m<=0 or b<=0 or c<=0:
-            keredmeny.delete(0,END)
-            keredmeny.insert(0, str("pozitív szám kell"))
+    if aa<=0:
+        va.delete(0,END)
+        va.insert(0, str("Pozitív szám kell"))
+    if bb<=0:
+        vb.delete(0,END)
+        vb.insert(0, str("Pozitív szám kell"))
+    if cc<=0:
+        vc.delete(0,END)
+        vc.insert(0, str("Pozitív szám kell"))
+    if dd<=0:
+        vd.delete(0,END)
+        vd.insert(0, str("Pozitív szám kell"))
+    if m<=0:
+        ve.delete(0,END)
+        ve.insert(0, str("Pozitív szám kell"))
+    if m > aa or m > dd:
+        ve.delete(0,END)
+        ve.insert(0, str("Túl nagy a magasság"))
     else:
         #kerület
-        kerulet=a+b+c+d
+        kerulet=aa+bb+cc+dd
         keredmeny.delete(0, END)
         keredmeny.insert(0, str(kerulet)+" cm")
         #terulet
-        terulet=((a+c)/2)*m
+        terulet=((aa+cc)/2)*m
         teredmeny.delete(0, END)
         teredmeny.insert(0, str(terulet)+" cm²")
 #deltoid
 def deltoid():
-    if not s:
+    try:
+        aa=float(va.get())
+    except:
+        va.delete(0, END)
+        va.insert(0, str("Szám adat kell"))
         keredmeny.delete(0, END)
-        keredmeny.insert(0, str("Szám adat kell"))
         teredmeny.delete(0, END)
-        teredmeny.insert(0, str("Szám adat kell"))
-    a=float(v1.get())
-    b=float(v2.get())
-    e=float(v3.get())
-    f=float(v4.get())
-        
-    if a==ures or e==ures or b==ures or f==ures:
+    try:
+        bb=float(vb.get())
+    except:
+        vb.delete(0, END)
+        vb.insert(0, str("Szám adat kell"))
         keredmeny.delete(0, END)
-        keredmeny.insert(0, str("Szám adat kell"))
         teredmeny.delete(0, END)
-        teredmeny.insert(0, str("Szám adat kell"))
-        
-    if a<=0 or e<=0 or b<=0 or f==ures:
-            keredmeny.delete(0,END)
-            keredmeny.insert(0, str("pozitív szám kell"))
+    try:
+        e=float(vc.get())
+    except:
+        vc.delete(0, END)
+        vc.insert(0, str("Szám adat kell"))
+        keredmeny.delete(0, END)
+        teredmeny.delete(0, END)
+    try:
+        f=float(vd.get())
+    except:
+        vd.delete(0, END)
+        vd.insert(0, str("Szám adat kell"))
+        keredmeny.delete(0, END)
+        teredmeny.delete(0, END)
+    if aa<=0:
+        va.delete(0,END)
+        va.insert(0, str("Pozitív szám kell"))
+    if bb<=0:
+        vb.delete(0,END)
+        vb.insert(0, str("Pozitív szám kell"))
+    if e<=0:
+        vc.delete(0,END)
+        vc.insert(0, str("Pozitív szám kell"))
+    if e>= aa + bb:
+        vc.delete(0,END)
+        vc.insert(0, str("Túl nagy szám"))
+    if f<=0:
+        vd.delete(0,END)
+        vd.insert(0, str("Pozitív szám kell"))
+    if f>= aa * 2:
+        vd.delete(0,END)
+        vd.insert(0, str("Túl nagy szám"))
     else:
         #kerület
-        kerulet=2*(a+b)
+        kerulet=2*(aa+bb)
         keredmeny.delete(0, END)
         keredmeny.insert(0, str(kerulet)+" cm")
         #terulet
@@ -220,132 +292,347 @@ def kor():
         teredmeny.insert(0, str(terulet)+" cm²")
 #Háromszög
 def haromszog():
-    if not s:
+    try:
+        aa=float(va.get())
+    except:
+        va.delete(0, END)
+        va.insert(0, str("Szám adat kell"))
         keredmeny.delete(0, END)
-        keredmeny.insert(0, str("Szám adat kell"))
         teredmeny.delete(0, END)
-        teredmeny.insert(0, str("Szám adat kell"))
-    a=float(v1.get())
-    b=float(v2.get())
-    c=float(v3.get())
-    ma=float(v4.get())
-    
-    
-    if a==ures or ma==ures or b==ures or c==ures:
+    try:
+        bb=float(vb.get())
+    except:
+        vb.delete(0, END)
+        vb.insert(0, str("Szám adat kell"))
         keredmeny.delete(0, END)
-        keredmeny.insert(0, str("Szám adat kell"))
         teredmeny.delete(0, END)
-        teredmeny.insert(0, str("Szám adat kell"))
-    
-    if a<=0 or b<=0 or c<=0 or ma<=0:
-            keredmeny.delete(0,END)
-            keredmeny.insert(0, str("pozitív szám kell"))
+    try:
+        cc=float(vc.get())
+    except:
+        vc.delete(0, END)
+        vc.insert(0, str("Szám adat kell"))
+        keredmeny.delete(0, END)
+        teredmeny.delete(0, END)
+    try:
+        m=float(vd.get())
+    except:
+        vd.delete(0, END)
+        vd.insert(0, str("Szám adat kell"))
+        keredmeny.delete(0, END)
+        teredmeny.delete(0, END)
+    if aa<=0:
+        va.delete(0,END)
+        va.insert(0, str("Pozitív szám kell"))
+    if bb<=0:
+        vb.delete(0,END)
+        vb.insert(0, str("Pozitív szám kell"))
+    if cc<=0:
+        vc.delete(0,END)
+        vc.insert(0, str("Pozitív szám kell"))
+    if m<=0:
+        vd.delete(0,END)
+        vd.insert(0, str("Pozitív szám kell"))
+    if aa + bb <= cc or bb + cc <= aa or aa + cc <= bb:
+        keredmeny.delete(0, END)
+        keredmeny.insert(0, str("Lehetetlen háromszög"))
     else:
         #kerület
-        kerulet=a+b+c
+        kerulet=aa + bb + cc
         keredmeny.delete(0, END)
         keredmeny.insert(0, str(kerulet)+" cm")
         #terület
-        terulet=(ma*a)/2
+        terulet=(m * aa) / 2
         teredmeny.delete(0, END)
-        teredmeny.insert(0, str(terulet)+" cm²")
-# Számolások vége. Menügomb funkciók.
+        teredmeny.insert(0, str(terulet)+" cm²") # Számolások vége. Menügomb funkciók.
 def negyzet_v(): # Egy ilyen funkció leírása gyorsan:
     jlg.set("Alakzat: Négyzet") # Számolás gomb alatt írja hogy mit számolunk
     val1.set("A oldal:") # Szám adat 1
-    val2.set("Semmi:") # Szám adat 2, ez esetben, nem kell, ezért leállítjuk
+    val2.set("Semmi:") # Szám adat 2, ez esetben, nem kell, ezért semmit írunk
     val3.set("Semmi:") # Szám adat 3
     val4.set("Semmi:") # Szám adat 4
+    val5.set("Semmi:") # Szám adat 5
     cal.configure(command=negyzet) # Számításgomb funkció átírása
     va.configure(state="normal") # Szám adat 1 engedélyezése
     vb.configure(state="disabled") # Szám adat 2 leállítása
     vc.configure(state="disabled") # Szám adat 3 leállítása
     vd.configure(state="disabled") # Szám adat 4 leállítása
+    ve.configure(state="disabled") # Szám adat 5 leállítása
+    canvas.delete("all") # Törölje le a táblát
+    forma = canvas.create_line(100, 50, 220, 50, 220, 170, 100, 170, 100, 50, width = 2) # Rajzolja fel az alakzatot
+    va.bind("<1>", negyzetrajz) # Ha rányomunk az Entry-re fusson le a function
+    vb.bind("<1>", None)
+    vc.bind("<1>", None)
+    vd.bind("<1>", None)
+    ve.bind("<1>", None)
 def teglalap_v():
     jlg.set("Alakzat: Téglalap")
     val1.set("A oldal:")
     val2.set("B oldal:")
     val3.set("Semmi:")
     val4.set("Semmi:")
+    val5.set("Semmi:")
     cal.configure(command=teglalap)
     va.configure(state="normal")
     vb.configure(state="normal")
     vc.configure(state="disabled")
     vd.configure(state="disabled")
+    ve.configure(state="disabled")
+    canvas.delete("all") # Törölje le a táblát
+    forma = canvas.create_line(120, 50, 200, 50, 200, 170, 120, 170, 120, 50, width = 2)
+    va.bind("<1>", teglalaprajza)
+    vb.bind("<1>", teglalaprajzb)
+    vc.bind("<1>", None)
+    vd.bind("<1>", None)
+    ve.bind("<1>", None)
 def rombusz_v():
     jlg.set("Alakzat: Rombusz")
     val1.set("A oldal:")
     val2.set("Magasság:")
     val3.set("Semmi:")
     val4.set("Semmi:")
+    val5.set("Semmi:")
     cal.configure(command=rombusz)
     va.configure(state="normal")
     vb.configure(state="normal")
     vc.configure(state="disabled")
     vd.configure(state="disabled")
+    ve.configure(state="disabled")
+    canvas.delete("all")
+    forma = canvas.create_line(140, 50, 280, 50, 200, 170, 60, 170, 140, 50, width = 2)
+    va.bind("<1>", rombuszrajza)
+    vb.bind("<1>", rombuszrajzm)
+    vc.bind("<1>", None)
+    vd.bind("<1>", None)
+    ve.bind("<1>", None)
 def paralelogramma_v():
     jlg.set("Alakzat: Paralelogramma")
     val1.set("A oldal:")
     val2.set("B oldal:")
     val3.set("Magasság:")
     val4.set("Semmi:")
+    val5.set("Semmi:")
     cal.configure(command=paralelogramma)
     va.configure(state="normal")
     vb.configure(state="normal")
     vc.configure(state="normal")
     vd.configure(state="disabled")
+    ve.configure(state="disabled")
+    canvas.delete("all")
+    forma = canvas.create_line(120, 50, 300, 50, 220, 170, 40, 170, 120, 50, width = 2)
+    va.bind("<1>", pararajza)
+    vb.bind("<1>", pararajzb)
+    vc.bind("<1>", pararajzm)
+    vd.bind("<1>", None)
+    ve.bind("<1>", None)
 def trapez_v():
     jlg.set("Alakzat: Trapéz")
     val1.set("A oldal:")
     val2.set("B oldal:")
     val3.set("C oldal:")
-    val4.set("Magasság:")
+    val4.set("D oldal:")
+    val5.set("Magasság:")
     cal.configure(command=trapez)
     va.configure(state="normal")
     vb.configure(state="normal")
     vc.configure(state="normal")
     vd.configure(state="normal")
+    ve.configure(state="normal")
+    canvas.delete("all")
+    forma = canvas.create_line(120, 50, 220, 50, 280, 170, 40, 170, 120, 50, width = 2)
+    va.bind("<1>", traprajza)
+    vb.bind("<1>", traprajzb)
+    vc.bind("<1>", traprajzc)
+    vd.bind("<1>", traprajzd)
+    ve.bind("<1>", traprajzm)
 def deltoid_v():
     jlg.set("Alakzat: Deltoid")
     val1.set("A oldal:")
     val2.set("B oldal:")
     val3.set("E átló (Hosszabb):")
-    val4.set("Semmi:")
+    val4.set("F átló (Rövidebb):")
+    val5.set("Semmi:")
     cal.configure(command=deltoid)
     va.configure(state="normal")
     vb.configure(state="normal")
     vc.configure(state="normal")
-    vd.configure(state="disabled")
+    vd.configure(state="normal")
+    ve.configure(state="disabled")
+    canvas.delete("all")
+    forma = canvas.create_line(50, 110, 220, 60, 270, 110, 220, 160, 50, 110, width = 2)
+    va.bind("<1>", deltrajza)
+    vb.bind("<1>", deltrajzb)
+    vc.bind("<1>", deltrajze)
+    vd.bind("<1>", deltrajzf)
+    ve.bind("<1>", None)
 def kor_v():
     jlg.set("Alakzat: Kör")
     val1.set("Sugár:")
     val2.set("Semmi:")
     val3.set("Semmi:")
     val4.set("Semmi:")
+    val5.set("Semmi:")
     cal.configure(command=kor)
     va.configure(state="normal")
     vb.configure(state="disabled")
     vc.configure(state="disabled")
     vd.configure(state="disabled")
+    ve.configure(state="disabled")
+    canvas.delete("all")
+    forma = canvas.create_oval(100, 50, 230, 180, width = 2)
+    va.bind("<1>", korrajz)
+    vb.bind("<1>", None)
+    vc.bind("<1>", None)
+    vd.bind("<1>", None)
+    ve.bind("<1>", None)
 def haromszog_v():
     jlg.set("Alakzat: Háromszög")
     val1.set("A oldal:")
     val2.set("B oldal:")
     val3.set("C oldal:")
     val4.set("Magasság:")
+    val5.set("Semmi:")
     cal.configure(command=kor)
     va.configure(state="normal")
     vb.configure(state="normal")
     vc.configure(state="normal")
-    vd.configure(state="disabled")
+    vd.configure(state="normal")
+    ve.configure(state="disabled")
+    canvas.delete("all")
+    forma = canvas.create_line(50, 170, 130, 50, 270, 170, 50, 170, width = 2)
+    va.bind("<1>", hrszrajza)
+    vb.bind("<1>", hrszrajzb)
+    vc.bind("<1>", hrszrajzc)
+    vd.bind("<1>", hrszrajzm)
+    ve.bind("<1>", None)
 def nevjegy():
     abl2 = Toplevel(ablak1)
     uz2 = Message(abl2, text="Készítette:\nKecskés Zsolt és Tátrai Dominik Oszkár\n2022.04.10", width=300)
     kilep = Button(abl2, text="Exit", command=abl2.destroy)
     uz2.pack()
     kilep.pack()
-    abl2.mainloop()
-#Menügomb funkciók vége. Ablak.
+    abl2.mainloop() #Menügomb funkciók vége. Rajzolás
+def negyzetrajz(event):
+    canvas.delete("all")
+    forma = canvas.create_line(100, 50, 220, 50, 220, 170, 100, 170, 100, 50, width = 2)
+    jeloles = canvas.create_line(100, 50, 100, 170, width = 2, fill = "red")
+    iras = canvas.create_text(90, 110, text = "A", fill = "red")
+def teglalaprajza(event):
+    canvas.delete("all")
+    forma = canvas.create_line(120, 50, 200, 50, 200, 170, 120, 170, 120, 50, width = 2)
+    jeloles1 = canvas.create_line(120, 50, 120, 170, width = 2, fill = "red")
+    jeloles2 = canvas.create_line(200, 50, 200, 170, width = 2, fill = "red")
+    iras1 = canvas.create_text(110, 110, text = "A", fill = "red")
+    iras2 = canvas.create_text(210, 110, text = "A", fill = "red")
+def teglalaprajzb(event):
+    canvas.delete("all")
+    forma = canvas.create_line(120, 50, 200, 50, 200, 170, 120, 170, 120, 50, width = 2)
+    jeloles1 = canvas.create_line(120, 170, 200, 170, width = 2, fill = "red")
+    jeloles2 = canvas.create_line(120, 50, 200, 50, width = 2, fill = "red")
+    iras1 = canvas.create_text(160, 40, text = "B", fill = "red")
+    iras2 = canvas.create_text(160, 180, text = "B", fill = "red")
+def rombuszrajza(event):
+    canvas.delete("all")
+    forma = canvas.create_line(140, 50, 280, 50, 200, 170, 60, 170, 140, 50, width = 2)
+    jeloles = canvas.create_line(60, 170, 140, 50, width = 2, fill = "red")
+    iras = canvas.create_text(90, 100, text = "A", fill = "red")
+def rombuszrajzm(event):
+    canvas.delete("all")
+    forma = canvas.create_line(140, 50, 280, 50, 200, 170, 60, 170, 140, 50, width = 2)
+    jeloles = canvas.create_line(140, 170, 140, 50, width = 2, fill = "red")
+    iras = canvas.create_text(130, 130, text = "M", fill = "red")
+def pararajza(event):
+    canvas.delete("all")
+    forma = canvas.create_line(120, 50, 300, 50, 220, 170, 40, 170, 120, 50, width = 2)
+    jeloles1 = canvas.create_line(40, 170, 120, 50, width = 2, fill = "red")
+    iras1 = canvas.create_text(70, 100, text = "A", fill = "red")
+    jeloles2 = canvas.create_line(220, 170, 300, 50, width = 2, fill = "red")
+    iras2 = canvas.create_text(270, 110, text = "A", fill = "red")
+def pararajzb(event):
+    canvas.delete("all")
+    forma = canvas.create_line(120, 50, 300, 50, 220, 170, 40, 170, 120, 50, width = 2)
+    jeloles1 = canvas.create_line(120, 50, 300, 50, width = 2, fill = "red")
+    iras1 = canvas.create_text(210, 40, text = "B", fill = "red")
+    jeloles2 = canvas.create_line(40, 170, 220, 170, width = 2, fill = "red")
+    iras2 = canvas.create_text(130, 180, text = "B", fill = "red")
+def pararajzm(event):
+    canvas.delete("all")
+    forma = canvas.create_line(120, 50, 300, 50, 220, 170, 40, 170, 120, 50, width = 2)
+    jeloles = canvas.create_line(140, 170, 140, 50, width = 2, fill = "red")
+    iras = canvas.create_text(130, 130, text = "M", fill = "red")
+def traprajza(event):
+    canvas.delete("all")
+    canvas.create_line(120, 50, 220, 50, 280, 170, 40, 170, 120, 50, width = 2)
+    jeloles = canvas.create_line(120, 50, 220, 50, width = 2, fill = "red")
+    iras = canvas.create_text(170, 40, text = "A", fill = "red")
+def traprajzb(event):
+    canvas.delete("all")
+    canvas.create_line(120, 50, 220, 50, 280, 170, 40, 170, 120, 50, width = 2)
+    jeloles = canvas.create_line(280, 170, 220, 50, width = 2, fill = "red")
+    iras = canvas.create_text(260, 100, text = "B", fill = "red")
+def traprajzc(event):
+    canvas.delete("all")
+    canvas.create_line(120, 50, 220, 50, 280, 170, 40, 170, 120, 50, width = 2)
+    jeloles = canvas.create_line(40, 170, 280, 170, width = 2, fill = "red")
+    iras = canvas.create_text(160, 180, text = "C", fill = "red")
+def traprajzd(event):
+    canvas.delete("all")
+    canvas.create_line(120, 50, 220, 50, 280, 170, 40, 170, 120, 50, width = 2)
+    jeloles = canvas.create_line(40, 170, 120, 50, width = 2, fill = "red")
+    iras = canvas.create_text(70, 100, text = "D", fill = "red")
+def traprajzm(event):
+    canvas.delete("all")
+    canvas.create_line(120, 50, 220, 50, 280, 170, 40, 170, 120, 50, width = 2)
+    jeloles = canvas.create_line(120, 170, 120, 50, width = 2, fill = "red")
+    iras = canvas.create_text(110, 150, text = "M", fill = "red")
+def deltrajza(event):
+    canvas.delete("all")
+    canvas.create_line(50, 110, 220, 60, 270, 110, 220, 160, 50, 110, width = 2)
+    jeloles1 = canvas.create_line(220, 60, 270, 110, width = 2, fill = "red")
+    iras1 = canvas.create_text(250, 70, text = "A", fill = "red")
+    jeloles1 = canvas.create_line(270, 110, 220, 160, width = 2, fill = "red")
+    iras1 = canvas.create_text(250, 150, text = "A", fill = "red")
+def deltrajzb(event):
+    canvas.delete("all")
+    canvas.create_line(50, 110, 220, 60, 270, 110, 220, 160, 50, 110, width = 2)
+    jeloles1 = canvas.create_line(50, 110, 220, 60, width = 2, fill = "red")
+    iras1 = canvas.create_text(130, 70, text = "B", fill = "red")
+    jeloles1 = canvas.create_line(50, 110, 220, 160, width = 2, fill = "red")
+    iras1 = canvas.create_text(130, 150, text = "B", fill = "red")
+def deltrajze(event):
+    canvas.delete("all")
+    canvas.create_line(50, 110, 220, 60, 270, 110, 220, 160, 50, 110, width = 2)
+    jeloles = canvas.create_line(50, 110, 270, 110, width = 2, fill = "red")
+    iras = canvas.create_text(200, 100, text = "E", fill = "red")
+def deltrajzf(event):
+    canvas.delete("all")
+    canvas.create_line(50, 110, 220, 60, 270, 110, 220, 160, 50, 110, width = 2)
+    jeloles = canvas.create_line(220, 60, 220, 160, width = 2, fill = "red")
+    iras = canvas.create_text(210, 110, text = "F", fill = "red")
+def korrajz(event):
+    canvas.delete("all")
+    forma = canvas.create_oval(100, 50, 230, 180, width = 2)
+    jeloles = canvas.create_line(165, 115, 230, 115, width = 2, fill = "red")
+    iras = canvas.create_text(200, 105, text = "r", fill = "red")
+def hrszrajza(event):
+    canvas.delete("all")
+    forma = canvas.create_line(50, 170, 130, 50, 270, 170, 50, 170, width = 2)
+    jeloles = canvas.create_line(50, 170, 270, 170, width = 2, fill = "red")
+    iras = canvas.create_text(160, 180, text = "A", fill = "red")
+def hrszrajzb(event):
+    canvas.delete("all")
+    forma = canvas.create_line(50, 170, 130, 50, 270, 170, 50, 170, width = 2)
+    jeloles = canvas.create_line(50, 170, 130, 50, width = 2, fill = "red")
+    iras = canvas.create_text(80, 100, text = "B", fill = "red")
+def hrszrajzc(event):
+    canvas.delete("all")
+    forma = canvas.create_line(50, 170, 130, 50, 270, 170, 50, 170, width = 2)
+    jeloles = canvas.create_line(270, 170, 130, 50, width = 2, fill = "red")
+    iras = canvas.create_text(210, 100, text = "C", fill = "red")
+def hrszrajzm(event):
+    canvas.delete("all")
+    forma = canvas.create_line(50, 170, 130, 50, 270, 170, 50, 170, width = 2)
+    jeloles = canvas.create_line(130, 170, 130, 50, width = 2, fill = "red")
+    iras = canvas.create_text(120, 150, text = "M", fill = "red") #Rajzolás vége. Főablak.
 ablak1 = Tk()
 ablak1.title("IKT Projekt - Síkidomok - 2022.04.27")
 ablak1.geometry('600x400')
@@ -354,49 +641,55 @@ ablak1.minsize(600, 400)
 ablak1.config(background="#eeeeee")
 icon = PhotoImage(file = "ikon.png")
 ablak1.iconphoto(True, icon)
-# Dinamikusan válozó szövegek
-jlg = StringVar()
+jlg = StringVar() # Dinamikusan változó szövegek
 jlg.set("Alakzat: -")
 val1 = StringVar()
-val1.set("Változó1:")
+val1.set("Semmi:")
 val2 = StringVar()
-val2.set("Változó2:")
+val2.set("Semmi:")
 val3 = StringVar()
-val3.set("Változó3:")
+val3.set("Semmi:")
 val4 = StringVar()
-val4.set("Változó3:")
-# Maga a test
-    #Változók
-ms = Frame(ablak1)
+val4.set("Semmi:")
+val5 = StringVar()
+val5.set("Semmi:")
+ms = Frame(ablak1) # Maga a test
 ms.grid(row=0, column=0)
-v1 = Label(
+v1 = Label(  #Változók
     ablak1,
     textvariable=val1, 
     bg='#eeeeee'
-).place(x=20, y=30)
+).place(x=20, y=20)
 v2 = Label(
     ablak1,
     textvariable=val2, 
     bg='#eeeeee'
-).place(x=20, y=50)
+).place(x=20, y=40)
 v3 = Label(
     ablak1,
     textvariable=val3, 
     bg='#eeeeee'
-).place(x=20, y=70)
+).place(x=20, y=60)
 v4 = Label(
     ablak1,
     textvariable=val4, 
     bg='#eeeeee'
-).place(x=20, y=90)
+).place(x=20, y=80)
+v5 = Label(
+    ablak1,
+    textvariable=val5, 
+    bg='#eeeeee'
+).place(x=20, y=100)
 va = Entry(ablak1, state="disabled")
-va.place(x=80, y=30)
+va.place(x=80, y=20)
 vb = Entry(ablak1, state="disabled")
-vb.place(x=80, y=50)
+vb.place(x=80, y=40)
 vc = Entry(ablak1, state="disabled")
-vc.place(x=80, y=70)
+vc.place(x=80, y=60)
 vd = Entry(ablak1, state="disabled")
-vd.place(x=80, y=90)
+vd.place(x=80, y=80)
+ve = Entry(ablak1, state="disabled")
+ve.place(x=80, y=100)
 kerulet = Label(
     ablak1,
     text='Kerület:', 
@@ -416,21 +709,18 @@ kep = Label(
     ablak1,
     image=sym
 ).place(x=440, y=250)
-canvas = Canvas(ablak1, height = 200, width = 300, bg = "white", bd = 10).place(x=250, y=20) # Canvas
+canvas = Canvas(ablak1, height = 200, width = 300, bg = "white", bd = 10) # Canvas
+canvas.place(x=250, y=20)
 cal = Button(ablak1, text = "Számítás", command = ablak1.destroy, height = 1, width = 11, font = "Impact 28")# Számítás gomb, ami dinamikusan változtatja a funkcióját
 cal.place(x=17, y=125) 
-# Milyen alakzatot csinálsz éppen?
 jelenlegl = Label(
     ablak1,
     textvariable=jlg, 
     bg='#eeeeee'
-).place(x=15, y=220)
-# Ha ilyen kódot kell mégegyszer írnom én felmondok
-# Gombok
+).place(x=15, y=220) # Milyen alakzatot csinálsz éppen?
 Manual = Button(ablak1, text = "Olvassel megnyitása", command = ablak1.destroy, height = 2, width = 30).place(x=195, y=350) # Gomb
 Button(ablak1, text = "Kilépés", command = ablak1.destroy, height = 2, width = 20).place(x=20, y=350) # Gomb
-# Menügombok
-m1 = Menubutton(ms, text = "Fájl", underline = 0)
+m1 = Menubutton(ms, text = "Fájl", underline = 0) # Menügombok
 m1.pack(side = LEFT)
 fm = Menu(m1)
 fm.add_command(label="Névjegy",command=nevjegy, underline = 0)
@@ -449,3 +739,4 @@ tm.add_command(label="Kör",command=kor_v, underline = 0)
 tm.add_command(label="Háromszög",command=haromszog_v, underline = 0)
 m2.config(menu = tm)
 ablak1.mainloop()
+# Ha ilyen kódot kell mégegyszer írnom én felmondok
