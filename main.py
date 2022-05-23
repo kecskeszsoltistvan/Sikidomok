@@ -13,7 +13,7 @@ ures=None
 aa = 0
 bb = 0
 cc = 0
-ma = 0
+m = 0
 r = 0
 #Számolások
 #negyzet
@@ -30,7 +30,7 @@ def negyzet():
         va.insert(0, str("Pozitív szám kell"))
     else:
         #kerület
-        kerulet = 2 * aa
+        kerulet = 4 * aa
         keredmeny.delete(0, END)
         keredmeny.insert(0, str(kerulet)+" cm")
         #terület
@@ -313,33 +313,29 @@ def haromszog():
         vc.insert(0, str("Szám adat kell"))
         keredmeny.delete(0, END)
         teredmeny.delete(0, END)
-    try:
-        m=float(vd.get())
-    except:
-        vd.delete(0, END)
-        vd.insert(0, str("Szám adat kell"))
-        keredmeny.delete(0, END)
-        teredmeny.delete(0, END)
     if aa<=0:
         va.delete(0,END)
         va.insert(0, str("Pozitív szám kell"))
-    if bb<=0:
+    elif bb<=0:
         vb.delete(0,END)
         vb.insert(0, str("Pozitív szám kell"))
-    if cc<=0:
+    elif cc<=0:
         vc.delete(0,END)
         vc.insert(0, str("Pozitív szám kell"))
-    if m<=0:
-        vd.delete(0,END)
-        vd.insert(0, str("Pozitív szám kell"))
-    if aa + bb <= cc or bb + cc <= aa or aa + cc <= bb:
+    elif aa + bb <= cc or bb + cc <= aa or aa + cc <= bb:
         keredmeny.delete(0, END)
         keredmeny.insert(0, str("Lehetetlen háromszög"))
     else:
         #kerület
-        kerulet=aa + bb + cc
+        kerulet= aa + bb + cc
         keredmeny.delete(0, END)
         keredmeny.insert(0, str(kerulet)+" cm")
+        #Magasság számolása:
+        m = (math.sqrt(aa+bb+cc) * math.sqrt(-aa+bb+cc) * math.sqrt(aa-bb+cc) * math.sqrt(aa+bb-cc)) / (2 * cc)
+        vd.configure(state="normal")
+        vd.delete(0, END)
+        vd.insert(0, str(m)+" cm")
+        vd.configure(state="disabled")
         #terület
         terulet=(m * aa) / 2
         teredmeny.delete(0, END)
@@ -489,13 +485,13 @@ def haromszog_v():
     val1.set("A oldal:")
     val2.set("B oldal:")
     val3.set("C oldal:")
-    val4.set("Magasság:")
+    val4.set("M(a)gasság:")
     val5.set("Semmi:")
-    cal.configure(command=kor)
+    cal.configure(command=haromszog)
     va.configure(state="normal")
     vb.configure(state="normal")
     vc.configure(state="normal")
-    vd.configure(state="normal")
+    vd.configure(state="disabled")
     ve.configure(state="disabled")
     canvas.delete("all")
     forma = canvas.create_line(50, 170, 130, 50, 270, 170, 50, 170, width = 2)
