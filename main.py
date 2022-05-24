@@ -15,6 +15,7 @@ bb = 0
 cc = 0
 m = 0
 r = 0
+atloe = True
 #Számolások
 #negyzet
 def negyzet():
@@ -356,33 +357,38 @@ def negyzet_v(): # Egy ilyen funkció leírása gyorsan:
     vc.configure(state="disabled") # Szám adat 3 leállítása
     vd.configure(state="disabled") # Szám adat 4 leállítása
     ve.configure(state="disabled") # Szám adat 5 leállítása
+    eat.configure(state="normal")
+    fat.configure(state="normal")
     canvas.delete("all") # Törölje le a táblát
     forma = canvas.create_line(100, 50, 220, 50, 220, 170, 100, 170, 100, 50, width = 2) # Rajzolja fel az alakzatot
     va.bind("<1>", negyzetrajz) # Ha rányomunk az Entry-re fusson le a function
-    vb.bind("<1>", None)
-    vc.bind("<1>", None)
-    vd.bind("<1>", None)
-    ve.bind("<1>", None)
+    vb.bind("<1>", negyzetr)
+    vc.bind("<1>", negyzetr)
+    vd.bind("<1>", negyzetr)
+    ve.bind("<1>", negyzetr)
 def teglalap_v():
-    jlg.set("Alakzat: Téglalap")
-    val1.set("A oldal:")
-    val2.set("B oldal:")
-    val3.set("Semmi:")
-    val4.set("Semmi:")
-    val5.set("Semmi:")
-    cal.configure(command=teglalap)
-    va.configure(state="normal")
-    vb.configure(state="normal")
-    vc.configure(state="disabled")
-    vd.configure(state="disabled")
-    ve.configure(state="disabled")
-    canvas.delete("all") # Törölje le a táblát
-    forma = canvas.create_line(120, 50, 200, 50, 200, 170, 120, 170, 120, 50, width = 2)
-    va.bind("<1>", teglalaprajza)
-    vb.bind("<1>", teglalaprajzb)
-    vc.bind("<1>", None)
-    vd.bind("<1>", None)
-    ve.bind("<1>", None)
+
+        jlg.set("Alakzat: Téglalap")
+        val1.set("A oldal:")
+        val2.set("B oldal:")
+        val3.set("Semmi:")
+        val4.set("Semmi:")
+        val5.set("Semmi:")
+        cal.configure(command=teglalap)
+        va.configure(state="normal")
+        vb.configure(state="normal")
+        vc.configure(state="disabled")
+        vd.configure(state="disabled")
+        ve.configure(state="disabled")
+        eat.configure(state="normal")
+    fat.configure(state="normal")
+        canvas.delete("all") # Törölje le a táblát
+        forma = canvas.create_line(120, 50, 200, 50, 200, 170, 120, 170, 120, 50, width = 2)
+        va.bind("<1>", teglalaprajza)
+        vb.bind("<1>", teglalaprajzb)
+        vc.bind("<1>", teglalapr)
+        vd.bind("<1>", teglalapr)
+        ve.bind("<1>", teglalapr)
 def rombusz_v():
     jlg.set("Alakzat: Rombusz")
     val1.set("A oldal:")
@@ -396,13 +402,15 @@ def rombusz_v():
     vc.configure(state="disabled")
     vd.configure(state="disabled")
     ve.configure(state="disabled")
+    eat.configure(state="normal")
+    fat.configure(state="normal")
     canvas.delete("all")
     forma = canvas.create_line(140, 50, 280, 50, 200, 170, 60, 170, 140, 50, width = 2)
     va.bind("<1>", rombuszrajza)
     vb.bind("<1>", rombuszrajzm)
-    vc.bind("<1>", None)
-    vd.bind("<1>", None)
-    ve.bind("<1>", None)
+    vc.bind("<1>", rombuszr)
+    vd.bind("<1>", rombuszr)
+    ve.bind("<1>", rombuszr)
 def paralelogramma_v():
     jlg.set("Alakzat: Paralelogramma")
     val1.set("A oldal:")
@@ -416,13 +424,15 @@ def paralelogramma_v():
     vc.configure(state="normal")
     vd.configure(state="disabled")
     ve.configure(state="disabled")
+    eat.configure(state="normal")
+    fat.configure(state="normal")
     canvas.delete("all")
     forma = canvas.create_line(120, 50, 300, 50, 220, 170, 40, 170, 120, 50, width = 2)
     va.bind("<1>", pararajza)
     vb.bind("<1>", pararajzb)
     vc.bind("<1>", pararajzm)
-    vd.bind("<1>", None)
-    ve.bind("<1>", None)
+    vd.bind("<1>", parar)
+    ve.bind("<1>", parar)
 def trapez_v():
     jlg.set("Alakzat: Trapéz")
     val1.set("A oldal:")
@@ -434,8 +444,10 @@ def trapez_v():
     va.configure(state="normal")
     vb.configure(state="normal")
     vc.configure(state="normal")
-    vd.configure(state="normal")
+    vd.configure(state="disabled")
     ve.configure(state="normal")
+    eat.configure(state="normal")
+    fat.configure(state="normal")
     canvas.delete("all")
     forma = canvas.create_line(120, 50, 220, 50, 280, 170, 40, 170, 120, 50, width = 2)
     va.bind("<1>", traprajza)
@@ -454,35 +466,52 @@ def deltoid_v():
     va.configure(state="normal")
     vb.configure(state="normal")
     vc.configure(state="normal")
-    vd.configure(state="normal")
+    vd.configure(state="disabled")
     ve.configure(state="disabled")
+    eat.configure(state="normal")
+    fat.configure(state="normal")
     canvas.delete("all")
     forma = canvas.create_line(50, 110, 220, 60, 270, 110, 220, 160, 50, 110, width = 2)
     va.bind("<1>", deltrajza)
     vb.bind("<1>", deltrajzb)
     vc.bind("<1>", deltrajze)
     vd.bind("<1>", deltrajzf)
-    ve.bind("<1>", None)
-def kor_v():
-    jlg.set("Alakzat: Kör")
-    val1.set("Sugár:")
-    val2.set("Semmi:")
-    val3.set("Semmi:")
-    val4.set("Semmi:")
-    val5.set("Semmi:")
-    cal.configure(command=kor)
-    va.configure(state="normal")
-    vb.configure(state="disabled")
-    vc.configure(state="disabled")
+    ve.bind("<1>", deltr)
+
+def eatlo():
+    atloe = True
+    vc.configure(state="normal")
     vd.configure(state="disabled")
-    ve.configure(state="disabled")
-    canvas.delete("all")
-    forma = canvas.create_oval(100, 50, 230, 180, width = 2)
-    va.bind("<1>", korrajz)
-    vb.bind("<1>", None)
-    vc.bind("<1>", None)
-    vd.bind("<1>", None)
-    ve.bind("<1>", None)
+def fatlo():
+    atloe = False
+    vc.configure(state="disabled")
+    vd.configure(state="normal")
+def kor_v():
+    try:
+        eat.destroy()
+        fat.destroy()
+    finally:
+        jlg.set("Alakzat: Kör")
+        val1.set("Sugár:")
+        val2.set("Semmi:")
+        val3.set("Semmi:")
+        val4.set("Semmi:")
+        val5.set("Semmi:")
+        cal.configure(command=kor)
+        va.configure(state="normal")
+        vb.configure(state="disabled")
+        vc.configure(state="disabled")
+        vd.configure(state="disabled")
+        ve.configure(state="disabled")
+        eat.configure(state="normal")
+    fat.configure(state="normal")
+        canvas.delete("all")
+        forma = canvas.create_oval(100, 50, 230, 180, width = 2)
+        va.bind("<1>", korrajz)
+        vb.bind("<1>", korr)
+        vc.bind("<1>", korr)
+        vd.bind("<1>", korr)
+        ve.bind("<1>", korr)
 def haromszog_v():
     jlg.set("Alakzat: Háromszög")
     val1.set("A oldal:")
@@ -496,13 +525,15 @@ def haromszog_v():
     vc.configure(state="normal")
     vd.configure(state="disabled")
     ve.configure(state="disabled")
+    eat.configure(state="normal")
+    fat.configure(state="normal")
     canvas.delete("all")
     forma = canvas.create_line(50, 170, 130, 50, 270, 170, 50, 170, width = 2)
     va.bind("<1>", hrszrajza)
     vb.bind("<1>", hrszrajzb)
     vc.bind("<1>", hrszrajzc)
     vd.bind("<1>", hrszrajzm)
-    ve.bind("<1>", None)
+    ve.bind("<1>", hrszr)
 def nevjegy():
     abl2 = Toplevel(ablak1)
     uz2 = Message(abl2, text="Készítette:\nKecskés Zsolt és Tátrai Dominik Oszkár\n2022.04.10", width=300)
@@ -510,6 +541,27 @@ def nevjegy():
     uz2.pack()
     kilep.pack()
     abl2.mainloop() #Menügomb funkciók vége. Rajzolás
+def negyzetr(event):
+    canvas.delete("all")
+    forma = canvas.create_line(100, 50, 220, 50, 220, 170, 100, 170, 100, 50, width = 2)
+def teglalapr(event):
+    canvas.delete("all")
+    forma = canvas.create_line(120, 50, 200, 50, 200, 170, 120, 170, 120, 50, width = 2)
+def rombuszr(event):
+    canvas.delete("all")
+    forma = canvas.create_line(140, 50, 280, 50, 200, 170, 60, 170, 140, 50, width = 2)
+def parar(event):
+    canvas.delete("all")
+    forma = canvas.create_line(120, 50, 300, 50, 220, 170, 40, 170, 120, 50, width = 2)
+def deltr(event):
+    canvas.delete("all")
+    canvas.create_line(50, 110, 220, 60, 270, 110, 220, 160, 50, 110, width = 2)
+def korr(event):
+    canvas.delete("all")
+    forma = canvas.create_oval(100, 50, 230, 180, width = 2)
+def hrszr(event):
+    canvas.delete("all")
+    forma = canvas.create_line(50, 170, 130, 50, 270, 170, 50, 170, width = 2)
 def negyzetrajz(event):
     canvas.delete("all")
     forma = canvas.create_line(100, 50, 220, 50, 220, 170, 100, 170, 100, 50, width = 2)
@@ -689,6 +741,10 @@ vd = Entry(ablak1, state="disabled")
 vd.place(x=80, y=80)
 ve = Entry(ablak1, state="disabled")
 ve.place(x=80, y=100)
+eat = Radiobutton(ablak1, variable = atloe, value=True, command = eatlo, background="#eeeeee", state = "disabled")
+eat.place(x=205, y=60)
+fat = Radiobutton(ablak1, variable = atloe, value=False, command = fatlo, background="#eeeeee", state = "disabled")
+fat.place(x=205, y=80)
 kerulet = Label(
     ablak1,
     text='Kerület:', 
