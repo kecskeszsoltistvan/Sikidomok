@@ -138,6 +138,9 @@ def paralelogramma():
     if m<=0:
         vc.delete(0,END)
         vc.insert(0, str("Pozitív szám kell"))
+    if m > aa:
+        vc.delete(0,END)
+        vc.insert(0, str("Túl nagy a magasság"))
     else:
         #kerület
         kerulet=2*(aa+bb)
