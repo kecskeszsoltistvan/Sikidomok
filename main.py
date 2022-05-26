@@ -1,6 +1,7 @@
 from email import message
 from tkinter import *
 import math
+import subprocess
 szamitas = "None"
 ures=None
 aa = 0
@@ -9,6 +10,10 @@ cc = 0
 m = 0
 r = 0
 atloe = True
+#Olvassel megnyitása.
+def olvasselengem():
+    path = "Olvassel.pdf"
+    subprocess.Popen([path], shell=True)
 #Számolások
 #negyzet
 def negyzet():
@@ -168,20 +173,12 @@ def trapez():
         keredmeny.delete(0, END)
         teredmeny.delete(0, END)
     try:
-        dd=float(vd.get())
-    except:
-        vd.delete(0, END)
-        vd.insert(0, str("Szám adat kell"))
-        keredmeny.delete(0, END)
-        teredmeny.delete(0, END)
-    try:
         m=float(ve.get())
     except:
         ve.delete(0, END)
         ve.insert(0, str("Szám adat kell"))
         keredmeny.delete(0, END)
         teredmeny.delete(0, END)
-    
     if aa<=0:
         va.delete(0,END)
         va.insert(0, str("Pozitív szám kell"))
@@ -191,16 +188,20 @@ def trapez():
     if cc<=0:
         vc.delete(0,END)
         vc.insert(0, str("Pozitív szám kell"))
-    if dd<=0:
-        vd.delete(0,END)
-        vd.insert(0, str("Pozitív szám kell"))
     if m<=0:
         ve.delete(0,END)
         ve.insert(0, str("Pozitív szám kell"))
-    if m > aa or m > dd:
+    if m > bb:
         ve.delete(0,END)
         ve.insert(0, str("Túl nagy a magasság"))
     else:
+        c1 = math.sqrt(bb ** 2 - m ** 2)
+        c2 = cc - c1 - aa
+        dd = math.sqrt(c2 ** 2 + m ** 2)
+        vd.configure(state="normal")
+        vd.delete(0, END)
+        vd.insert(0, str(dd))
+        vd.configure(state="disabled")
         #kerület
         kerulet=aa+bb+cc+dd
         keredmeny.delete(0, END)
@@ -212,7 +213,6 @@ def trapez():
 #deltoid
 def deltoid():
     global atloe
-    print(atloe)
     if atloe == True:
         try:
             aa=float(va.get())
@@ -395,8 +395,8 @@ def negyzet_v(): # Egy ilyen funkció leírása gyorsan:
     vc.configure(state="disabled") # Szám adat 3 leállítása
     vd.configure(state="disabled") # Szám adat 4 leállítása
     ve.configure(state="disabled") # Szám adat 5 leállítása
-    eat.configure(state="normal")
-    fat.configure(state="normal")
+    eat.configure(state="disabled")
+    fat.configure(state="disabled")
     canvas.delete("all") # Törölje le a táblát
     forma = canvas.create_line(100, 50, 220, 50, 220, 170, 100, 170, 100, 50, width = 2) # Rajzolja fel az alakzatot
     va.bind("<1>", negyzetrajz) # Ha rányomunk az Entry-re fusson le a function
@@ -439,8 +439,8 @@ def rombusz_v():
     vc.configure(state="disabled")
     vd.configure(state="disabled")
     ve.configure(state="disabled")
-    eat.configure(state="normal")
-    fat.configure(state="normal")
+    eat.configure(state="disabled")
+    fat.configure(state="disabled")
     canvas.delete("all")
     forma = canvas.create_line(140, 50, 280, 50, 200, 170, 60, 170, 140, 50, width = 2)
     va.bind("<1>", rombuszrajza)
@@ -461,8 +461,8 @@ def paralelogramma_v():
     vc.configure(state="normal")
     vd.configure(state="disabled")
     ve.configure(state="disabled")
-    eat.configure(state="normal")
-    fat.configure(state="normal")
+    eat.configure(state="disabled")
+    fat.configure(state="disabled")
     canvas.delete("all")
     forma = canvas.create_line(120, 50, 300, 50, 220, 170, 40, 170, 120, 50, width = 2)
     va.bind("<1>", pararajza)
@@ -483,8 +483,8 @@ def trapez_v():
     vc.configure(state="normal")
     vd.configure(state="disabled")
     ve.configure(state="normal")
-    eat.configure(state="normal")
-    fat.configure(state="normal")
+    eat.configure(state="disabled")
+    fat.configure(state="disabled")
     canvas.delete("all")
     forma = canvas.create_line(120, 50, 220, 50, 280, 170, 40, 170, 120, 50, width = 2)
     va.bind("<1>", traprajza)
@@ -520,14 +520,12 @@ def eatlo():
     atloe = True
     vc.configure(state="normal")
     vd.configure(state="disabled")
-    print(atloe)
     return atloe
 def fatlo():
     global atloe
     atloe = False
     vc.configure(state="disabled")
     vd.configure(state="normal")
-    print(atloe)
     return atloe
 def kor_v():
         jlg.set("Alakzat: Kör")
@@ -542,8 +540,8 @@ def kor_v():
         vc.configure(state="disabled")
         vd.configure(state="disabled")
         ve.configure(state="disabled")
-        eat.configure(state="normal")
-        fat.configure(state="normal")
+        eat.configure(state="disabled")
+        fat.configure(state="disabled")
         canvas.delete("all")
         forma = canvas.create_oval(100, 50, 230, 180, width = 2)
         va.bind("<1>", korrajz)
@@ -564,8 +562,8 @@ def haromszog_v():
     vc.configure(state="normal")
     vd.configure(state="disabled")
     ve.configure(state="disabled")
-    eat.configure(state="normal")
-    fat.configure(state="normal")
+    eat.configure(state="disabled")
+    fat.configure(state="disabled")
     canvas.delete("all")
     forma = canvas.create_line(50, 170, 130, 50, 270, 170, 50, 170, width = 2)
     va.bind("<1>", hrszrajza)
@@ -812,7 +810,7 @@ jelenlegl = Label(
     textvariable=jlg, 
     bg='#eeeeee'
 ).place(x=15, y=220) # Milyen alakzatot csinálsz éppen?
-Manual = Button(ablak1, text = "Olvassel megnyitása", command = ablak1.destroy, height = 2, width = 30).place(x=195, y=350) # Gomb
+Manual = Button(ablak1, text = "Olvassel megnyitása", command = olvasselengem, height = 2, width = 30).place(x=195, y=350) # Gomb
 Button(ablak1, text = "Kilépés", command = ablak1.destroy, height = 2, width = 20).place(x=20, y=350) # Gomb
 m1 = Menubutton(ms, text = "Fájl", underline = 0) # Menügombok
 m1.pack(side = LEFT)
