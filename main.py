@@ -1,13 +1,6 @@
 from email import message
 from tkinter import *
 import math
-'''
-Hosszú történet röviden, ennek a kódnak úgy 80%-át újra írtam, mert csak így működött.
-Az egész egy kódműtétként indult, de aztán elkezdtem az én részemet is csinálni, és puff, kész van (majdnem).
-Néhány számítást még át kell írni, mert túl sok adatot kér, de azon kívül minden jó.  
-Ja, meg az olvassel.pdf-t kell befejezni. Azt addig átadom a munkatársamnak.
-A maradék úgy is meglesz.                                - Kecskés Zsolt. 2022.05.22.
-'''
 szamitas = "None"
 ures=None
 aa = 0
@@ -218,61 +211,106 @@ def trapez():
         teredmeny.insert(0, str(terulet)+" cm²")
 #deltoid
 def deltoid():
-    try:
-        aa=float(va.get())
-    except:
-        va.delete(0, END)
-        va.insert(0, str("Szám adat kell"))
-        keredmeny.delete(0, END)
-        teredmeny.delete(0, END)
-    try:
-        bb=float(vb.get())
-    except:
-        vb.delete(0, END)
-        vb.insert(0, str("Szám adat kell"))
-        keredmeny.delete(0, END)
-        teredmeny.delete(0, END)
-    try:
-        e=float(vc.get())
-    except:
-        vc.delete(0, END)
-        vc.insert(0, str("Szám adat kell"))
-        keredmeny.delete(0, END)
-        teredmeny.delete(0, END)
-    try:
-        f=float(vd.get())
-    except:
-        vd.delete(0, END)
-        vd.insert(0, str("Szám adat kell"))
-        keredmeny.delete(0, END)
-        teredmeny.delete(0, END)
-    if aa<=0:
-        va.delete(0,END)
-        va.insert(0, str("Pozitív szám kell"))
-    if bb<=0:
-        vb.delete(0,END)
-        vb.insert(0, str("Pozitív szám kell"))
-    if e<=0:
-        vc.delete(0,END)
-        vc.insert(0, str("Pozitív szám kell"))
-    if e>= aa + bb:
-        vc.delete(0,END)
-        vc.insert(0, str("Túl nagy szám"))
-    if f<=0:
-        vd.delete(0,END)
-        vd.insert(0, str("Pozitív szám kell"))
-    if f>= aa * 2:
-        vd.delete(0,END)
-        vd.insert(0, str("Túl nagy szám"))
+    global atloe
+    print(atloe)
+    if atloe == True:
+        try:
+            aa=float(va.get())
+        except:
+            va.delete(0, END)
+            va.insert(0, str("Szám adat kell"))
+            keredmeny.delete(0, END)
+            teredmeny.delete(0, END)
+        try:
+            bb=float(vb.get())
+        except:
+            vb.delete(0, END)
+            vb.insert(0, str("Szám adat kell"))
+            keredmeny.delete(0, END)
+            teredmeny.delete(0, END)
+        try:
+            e=float(vc.get())
+        except:
+            vc.delete(0, END)
+            vc.insert(0, str("Szám adat kell"))
+            keredmeny.delete(0, END)
+            teredmeny.delete(0, END)
+        if aa<=0:
+            va.delete(0,END)
+            va.insert(0, str("Pozitív szám kell"))
+        if bb<=0:
+            vb.delete(0,END)
+            vb.insert(0, str("Pozitív szám kell"))
+        if e<=0:
+            vc.delete(0,END)
+            vc.insert(0, str("Pozitív szám kell"))
+        if e>= aa + bb:
+            vc.delete(0,END)
+            vc.insert(0, str("Túl nagy szám"))
+        else:
+            f = ((math.sqrt(aa+bb+e) * math.sqrt(-aa+bb+e) * math.sqrt(aa-bb+e) * math.sqrt(aa+bb-e)) / (2 * e)) * 2
+            vd.configure(state="normal")
+            vd.delete(0, END)
+            vd.insert(0, str(f))
+            vd.configure(state="disabled")
+            #kerület
+            kerulet=2*(aa+bb)
+            keredmeny.delete(0, END)
+            keredmeny.insert(0, str(kerulet)+" cm")
+            #terulet
+            terulet=(e*f)/2
+            teredmeny.delete(0, END)
+            teredmeny.insert(0, str(terulet)+" cm²")
     else:
-        #kerület
-        kerulet=2*(aa+bb)
-        keredmeny.delete(0, END)
-        keredmeny.insert(0, str(kerulet)+" cm")
-        #terulet
-        terulet=(e*f)/2
-        teredmeny.delete(0, END)
-        teredmeny.insert(0, str(terulet)+" cm²")
+        try:
+            aa=float(va.get())
+        except:
+            va.delete(0, END)
+            va.insert(0, str("Szám adat kell"))
+            keredmeny.delete(0, END)
+            teredmeny.delete(0, END)
+        try:
+            bb=float(vb.get())
+        except:
+            vb.delete(0, END)
+            vb.insert(0, str("Szám adat kell"))
+            keredmeny.delete(0, END)
+            teredmeny.delete(0, END)
+        try:
+            f=float(vd.get())
+        except:
+            vd.delete(0, END)
+            vd.insert(0, str("Szám adat kell"))
+            keredmeny.delete(0, END)
+            teredmeny.delete(0, END)
+        if aa<=0:
+            va.delete(0,END)
+            va.insert(0, str("Pozitív szám kell"))
+        if bb<=0:
+            vb.delete(0,END)
+            vb.insert(0, str("Pozitív szám kell"))
+        if f<=0:
+            vd.delete(0,END)
+            vd.insert(0, str("Pozitív szám kell"))
+        if f>= aa * 2:
+            vd.delete(0,END)
+            vd.insert(0, str("Túl nagy szám"))
+        else:
+            #kerület
+            e1 = math.sqrt(aa**2 - (f/2) ** 2)
+            e2 = math.sqrt(bb**2 - (f/2) ** 2)
+            e = e1+e2 
+            vc.configure(state="normal")
+            vc.delete(0, END)
+            vc.insert(0, str(e))
+            vc.configure(state="disabled")
+            kerulet=2*(aa+bb)
+            keredmeny.delete(0, END)
+            keredmeny.insert(0, str(kerulet)+" cm")
+            #terulet
+            terulet=(e*f)/2
+            teredmeny.delete(0, END)
+            teredmeny.insert(0, str(terulet)+" cm²")
 #kör
 def kor():
     try:
@@ -338,7 +376,7 @@ def haromszog():
         m = (math.sqrt(aa+bb+cc) * math.sqrt(-aa+bb+cc) * math.sqrt(aa-bb+cc) * math.sqrt(aa+bb-cc)) / (2 * cc)
         vd.configure(state="normal")
         vd.delete(0, END)
-        vd.insert(0, str(m)+" cm")
+        vd.insert(0, str(m))
         vd.configure(state="disabled")
         #terület
         terulet=(m * aa) / 2
@@ -367,7 +405,6 @@ def negyzet_v(): # Egy ilyen funkció leírása gyorsan:
     vd.bind("<1>", negyzetr)
     ve.bind("<1>", negyzetr)
 def teglalap_v():
-
     jlg.set("Alakzat: Téglalap")
     val1.set("A oldal:")
     val2.set("B oldal:")
@@ -479,13 +516,19 @@ def deltoid_v():
     ve.bind("<1>", deltr)
 
 def eatlo():
+    global atloe
     atloe = True
     vc.configure(state="normal")
     vd.configure(state="disabled")
+    print(atloe)
+    return atloe
 def fatlo():
+    global atloe
     atloe = False
     vc.configure(state="disabled")
     vd.configure(state="normal")
+    print(atloe)
+    return atloe
 def kor_v():
         jlg.set("Alakzat: Kör")
         val1.set("Sugár:")
