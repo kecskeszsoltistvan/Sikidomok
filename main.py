@@ -1,4 +1,4 @@
-from email import message
+﻿from email import message
 from tkinter import *
 import math
 import subprocess
@@ -417,8 +417,8 @@ def teglalap_v():
     vc.configure(state="disabled")
     vd.configure(state="disabled")
     ve.configure(state="disabled")
-    eat.configure(state="normal")
-    fat.configure(state="normal")
+    eat.configure(state="disabled")
+    fat.configure(state="disabled")
     canvas.delete("all") # Törölje le a táblát
     forma = canvas.create_line(120, 50, 200, 50, 200, 170, 120, 170, 120, 50, width = 2)
     va.bind("<1>", teglalaprajza)
